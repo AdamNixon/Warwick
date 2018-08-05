@@ -1,0 +1,31 @@
+/** \page HEAT
+    
+    \subpage Moving
+    \page Moving Moving grids
+
+  We briefly will describe how to use moving grids with dune-fem solving a heat equation
+  on a moving surface. For this we need to set
+  \co{GRIDDIM=2}, \co{WORLDDIM=3} so that the problem is solved on a surface.
+  For this example we assume that the deformation of the surface is prescribed by a function
+  \f$ V=V(t,x)\colon \mathbb{R}^+\times \mathbb{R}^3\to \mathbb{R}^3 \f$ which is defined in 
+  \link example-moving/source/deformation.hh deformation.hh\endlink.
+  Our approach we simulating on a moving domain is to use a special grid part for which the
+  geometry on each entity is a linear (trilinear) mapping on the reference element given by
+  evaluating the deformation on the vertices of the entity. A similar approach is used in
+  the \class{GeometryGrid} implementation in dune-grid.
+  The corresponding code in the \func{algorithm()} method is the following:
+
+  \snippet example-moving/source/main.cc Setup the grid part for a deforming domain
+
+  The further small change is required in the time loop:
+
+  \snippet example-moving/source/main.cc Set the new time to move to new surface
+
+  First the time is updated in the deformation function to move the surface to the next time level.
+  Since the domain has changed, we need to reassemble the implicit operator in each time
+  step leading to the \co{true} argument in the call of the \func{solve()} method.
+  The rest of the code remains the same as described in the previous example \ref HEAT1 "Solving the heat equation".
+
+  \image html bat.gif ""
+  \image latex bat.eps "solution on moving surface at different points in time" width=\textwidth
+**/
