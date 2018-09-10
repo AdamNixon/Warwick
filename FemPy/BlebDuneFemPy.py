@@ -8,7 +8,7 @@ import dune.fem as fem
 from dune.fem.function import integrate
 #from dune.grid import cartesianDomain
 from dune.ufl import Space, NamedConstant
-from deformation import identity, Ball, Bloodcell
+from deformation import identity, Ball, Bloodcell, Pear
 from functions import ComputeArea, A1, A2,  norm, InvNormNxN, Nu, metric, cortexCalc, cortexDistance
 
 ########################################################
@@ -21,7 +21,8 @@ Graphics = 1	# 0: outputs (u,w) over grid, 1: outputs  u over the grid warped by
 
 surfaceOptions = { 0 : lambda x: identity(x), # Full description of functions can be found in deformation.py
 				   1 : lambda x: Ball(x),
-				   2 : lambda x: Bloodcell(x)
+				   2 : lambda x: Bloodcell(x),
+				   3 : lambda x: Pear(x)
 				 }
 # Variables
 deltaT = 0.002
