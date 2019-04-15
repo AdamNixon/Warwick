@@ -2,7 +2,6 @@
 
 Currently uploaded is my code used for simulations. Both the fempy and dune-fem version.
 Error functionality is not included in the uploaded version.
-No plans exist to upload dgf files.
   
 In the fem-py  code we include some options.
 The included deformation functions are for a ball and a biconcave disc.
